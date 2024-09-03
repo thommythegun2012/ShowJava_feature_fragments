@@ -1,0 +1,67 @@
+/*
+ * Show Java - A java/apk decompiler for android
+ * Copyright (c) 2019 Niranjan Rajendran
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+
+    ext.kotlin_version = '1.3.71'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://maven.fabric.io/public" }
+        maven { url 'file://C:\\Users\\Tommy\\.m2\\repository' }
+        maven { url 'https://dl.bintray.com/ppartisan/maven/' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.0-beta03'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.gms:google-services:4.3.3"
+        classpath 'io.fabric.tools:gradle:1.31.2'
+        classpath "com.github.BryanSharp:hibeaver:1.2.7"
+        classpath "io.michaelrocks:paranoid-gradle-plugin:0.3.7"
+        classpath "com.google.android.gms:oss-licenses-plugin:0.10.2"
+        classpath "ru.tinkoff.gradle:jarjar:1.1.0"
+    }
+}
+
+plugins {
+    id "com.github.ben-manes.versions" version "0.28.0"
+    //id "com.google.firebase.crashlytics" version "2.9.9"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://maven.google.com/" }
+        maven { url 'file://C:\\Users\\Tommy\\.m2\\repository' }
+        maven { url 'https://dl.bintray.com/ppartisan/maven/' }
+    }
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
