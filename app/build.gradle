@@ -1,0 +1,297 @@
+/*
+ //noinspection GradleDependency
+ * Show Java - A java/apk decompiler for android
+ * Copyright (c) 2019 Niranjan Rajendran
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+//apply plugin: "io.fabric"
+apply plugin: "com.google.android.gms.oss-licenses-plugin"
+//apply plugin: "io.michaelrocks.paranoid"
+apply plugin: "ru.tinkoff.gradle.jarjar"
+
+def versionMajor = 3
+def versionMinor = 1
+def versionPatch = 0
+def versionBuild = 0
+
+def getGitHash = 73654
+/*
+def getGitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine "git", "rev-parse", "--short", "HEAD"
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+*/
+
+def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
+
+def isCi = "true" == System.getenv("CI")
+def preDexEnabled = "true" == System.getProperty("PRE_DEX", "true")
+
+def props = new Properties()
+try {
+    props.load(new FileInputStream("c:\\Users\\Tommy\\AndroidStudioProjects\\show-java-feature-fragments\\app\\keys.properties"))
+} catch (e) {
+    props.load(new FileInputStream("c:\\Users\\Tommy\\AndroidStudioProjects\\show-java-feature-fragments\\app\\keys.properties.example"))
+    println("===========")
+    println(e.message)
+    println("Loaded app/keys.properties.example instead.")
+    println("===========")
+    println()
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.3"
+
+    dexOptions {
+        preDexLibraries = preDexEnabled && !isCi
+    }
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 29
+        multiDexEnabled true
+        multiDexKeepProguard file("multidex-config.pro")
+
+        applicationId "com.njlabs.showjava"
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resConfigs "en"
+        vectorDrawables.useSupportLibrary true
+
+        proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+        resValue "string", "appName", "Show Java"
+        resValue "string", "appNameGetPro", "Get Show Java Pro"
+        resValue "string", "appVersion", android.defaultConfig.versionName
+        resValue "string", "appVersionExtended", "Version ${android.defaultConfig.versionName}"
+        //resValue "string", "appVersionExtendedWithHash", "Version ${android.defaultConfig.versionName} (${getGitHash()})"
+        resValue "string", "appVersionExtendedWithHash", "Version ${android.defaultConfig.versionName} getGitHash()"
+
+
+        resValue "string", "deviceId", props.getProperty("deviceId")
+        resValue "string", "adUnitId", props.getProperty("adUnitId")
+        resValue "string", "admobAppId", props.getProperty("admobAppId")
+        resValue "string", "admobPublisherId", props.getProperty("admobPublisherId")
+        resValue "string", "privacyPolicyUrl", props.getProperty("privacyPolicyUrl")
+
+        buildConfigField "String", "GIT_SHA", "\"getGitHash()\""
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+        buildConfigField "String", "PLAY_LICENSE_KEY", "\"${props.getProperty("googlePlayLicenseKey")}\""
+        buildConfigField "String", "IAP_PRODUCT_ID", "\"${props.getProperty("iapProductId")}\""
+        buildConfigField "String", "BACKEND_URL", "\"${props.getProperty("backendUrl")}\""
+        buildConfigField "String", "ENCRYPTION_KEY", "\"${props.getProperty("encryptionKey")}\""
+        buildConfigField "String", "ENCRYPTION_SALT", "\"${props.getProperty("encryptionSalt")}\""
+        buildConfigField "String", "PURCHASE_VERIFIER_PATH", "\"${props.getProperty("purchaseVerifierPath")}\""
+        buildConfigField "Boolean", "IS_CI", "${isCi}"
+        buildConfigField "Boolean", "EXTENDED_VALIDATION", "false"
+
+        manifestPlaceholders = [admobAppId: props.getProperty("admobAppId")]//, crashlyticsApiKey: props.getProperty("crashlyticsApiKey")]
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled false
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    packagingOptions {
+        exclude "META-INF/LICENSE"
+        exclude "META-INF/LICENSE.txt"
+        exclude "META-INF/NOTICE.txt"
+        exclude "META-INF/MANIFEST.MF"
+        exclude "resources.arsc"
+        pickFirst 'META-INF/library_release.kotlin_module'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    flavorDimensions "type"
+
+    productFlavors {
+        standard {
+            dimension = "type"
+        }
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    signingConfigs {
+        release {
+            storeFile = file('C:\\Users\\Tommy\\.android\\release.keystore')
+            storePassword = 'paranoid'
+            keyAlias = 'paranoid'
+            keyPassword = 'paranoid'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [:]
+            minifyEnabled true
+            shrinkResources false
+            buildConfigField "Boolean", "EXTENDED_VALIDATION", "true"
+            //multiDexEnabled
+            matchingFallbacks = []
+            multiDexEnabled true
+            proguardFiles 'proguard-rules.pro'
+            proguardFiles
+        }
+        debug {
+            manifestPlaceholders = [crashlytics:"false"]
+            buildConfigField "Boolean", "EXTENDED_VALIDATION", props.getProperty("debugExtendedValidation", "false")
+            minifyEnabled props.getProperty("minifyEnabled", "true") == "true"
+            shrinkResources props.getProperty("shrinkResources", "true") == "true"
+            testProguardFile "test-proguard-rules.pro"
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        main.resources.srcDirs += "src/main/config"
+        test.java.srcDirs += "src/test/kotlin"
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
+    }
+    dynamicFeatures = [':modules:decompilers:jadx_24', ':modules:decompilers:fernflower_24', ':modules:decompilers:cfr_16']
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.google.code.findbugs:jsr305:2.0.3"
+    }
+}
+
+def work_version = '2.1.0-rc01'
+
+dependencies {
+    api 'androidx.core:core-ktx:1.2.0'
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
+
+    // Multi-dex
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    // Kotlin Standard library
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.3"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+
+    // Firebase-related dependencies
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.google.firebase:firebase-ads:19.0.1'
+    //noinspection OutdatedLibrary
+    //implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+
+    // AndroidX support libraries
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "com.google.android.material:material:1.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.preference:preference:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation 'androidx.core:core:1.2.0'
+    implementation "com.github.rumboalla.KryptoPrefs:kryptoprefs:0.4.3"
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation "com.google.android.ads.consent:consent-library:1.0.8"
+    implementation "com.android.volley:volley:1.2.1"
+
+    // Android WorkManager
+    implementation("androidx.work:work-runtime-ktx:$work_version", {
+        exclude group: "com.google.guava", module: "listenablefuture"
+    })
+
+    // Dex2Jar & friends
+    implementation "asm:asm-all:3.3.1"
+    implementation files("libs/smali-2.2.1.jar")
+    implementation files("libs/dex-ir-1.12.jar")
+    implementation files("libs/dex-reader-1.15.jar")
+    implementation files("libs/dex-tools-0.0.9.15.jar")
+    implementation files("libs/dex-translator-0.0.9.15.jar")
+
+    // DX Tool. We are using jar-jar to repackage the dx lib.
+    // As android comes with the same classes in the lib-art.jar package that is usually a tad bit
+    // older than what we need and hence missing stuff.
+    jarJar files("libs/dx-1.16.jar")
+
+    // APK parser
+    implementation 'net.dongliu:apk-parser:2.6.10'
+
+    // Testing tools
+    //testImplementation "junit:junit:4.13"
+    //androidTestImplementation "junit:junit:4.13"
+    //androidTestImplementation 'androidx.test:core:1.2.0'
+    //androidTestImplementation 'androidx.test:rules:1.2.0'
+    //androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    //androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
+        //exclude group: "com.android.support", module: "support-annotations"
+        //exclude group: "com.google.code.findbugs", module: "jsr305"
+    //})
+
+    // Everybody else
+    //noinspection GradleDependency
+    implementation "commons-io:commons-io:2.5" // Fix to 2.5 for compatibility
+    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation('org.solovyev.android:checkout:1.2.2', {
+        exclude group: "com.google.code.findbugs", module: "jsr305"
+    })
+    implementation "pub.devrel:easypermissions:3.0.0"
+    implementation("com.github.kobakei:MaterialFabSpeedDial:2.0.0", {
+        exclude group: "com.google.android.material", module: "material"
+    })
+    implementation "com.daimajia.numberprogressbar:library:1.4@aar"
+    implementation "com.davemorrissey.labs:subsampling-scale-image-view:3.10.0"
+    implementation "com.github.javiersantos:PiracyChecker:1.2.6"
+    implementation "com.github.nekocode:Badge:2.1"
+    debugImplementation("com.facebook.stetho:stetho:1.5.1", {
+        exclude group: "com.android.support", module: "support-annotations"
+        exclude group: "com.google.code.findbugs", module: "jsr305"
+    })
+
+    implementation fileTree(dir: "build/libs", include: ["*.jar"])
+}
+
+jarJar {
+    rules = ["dx-1.16.jar": "com.android.** xyz.codezero.android.@1"]
+}
+
+apply plugin: "com.google.gms.google-services"

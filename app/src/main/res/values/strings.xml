@@ -1,0 +1,192 @@
+<!--
+  ~ Show Java - A java/apk decompiler for android
+  ~ Copyright (c) 2019 Niranjan Rajendran
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="settings">Settings</string>
+    <string name="drawerClose">Close drawer</string>
+    <string name="drawerOpen">Open drawer</string>
+    <string name="decompilerSettings">Decompiler settings</string>
+    <string name="selectDefaultDecompiler">Select default decompiler</string>
+    <string name="speedUpDecompile">Speed up decompiling process</string>
+    <string name="ignoreLibrariesPreferenceSummary">Speed up by ignoring common open sourced libraries</string>
+    <string name="autoDecompilerSelectionPreferenceSummary">Show/Hide the decompiler selection dialog box</string>
+    <string name="autoDecompilerSelection">Don\'t ask to pick decompiler each time</string>
+    <string name="tapToRateApp">Tap to rate this app on Play Store</string>
+    <string name="reportBug">Report a bug</string>
+    <string name="rateAndReview">Rate &amp; Review</string>
+    <string name="easeOfUse">Ease of use</string>
+    <string name="helpSupport">Help &amp; Support</string>
+    <string name="reportBugPreferenceSummary">Tap to report any bug (or) issue found in this app</string>
+    <string name="about">About</string>
+    <string name="invertBackgroundColor">Invert background color</string>
+    <string name="storagePermissionRationale">
+        <xliff:g id="appName">Show Java</xliff:g>
+        requires storage permission to store decompiled sources
+    </string>
+    <string name="welcome">Welcome</string>
+    <string name="tapPlus">tap the plus button to begin</string>
+    <string name="space" translatable="false" />
+    <string name="appIcon">App icon</string>
+    <string name="pickAppToExplore">Pick an app to explore</string>
+    <string name="pickFromSdCard">Pick from SD Card</string>
+    <string name="pickInstalled">Pick from installed</string>
+    <string name="loadingApplications">Loading installed applications …</string>
+    <string name="loadingGear">Loading gear</string>
+    <string name="loadingApp">Loading <xliff:g example="WhatsApp" id="name_of_an_app">%1$s</xliff:g></string>
+    <string name="loadingStatistic">
+        <xliff:g example="23" id="countCurrent">%1$d</xliff:g> of <xliff:g example="345" id="countTotal">%2$d</xliff:g>
+    </string>
+    <string name="waitingToStart">Waiting to start</string>
+    <string name="processing">Processing</string>
+    <string name="gettingReady">Getting ready</string>
+    <string name="cancel">Cancel</string>
+    <string name="decompile">Decompile</string>
+    <string name="viewSource">View source</string>
+    <string name="pickDecompiler">Pick a decompiler</string>
+    <string name="checkoutSourceLink">You might want to checkout the source code on <xliff:g id="github">GitHub</xliff:g> instead ;)</string>
+    <string name="appAlreadyDecompiled">This Package has already been decompiled</string>
+    <string name="actionAppAlreadyDecompiled">This application has already been decompiled once and the source exists on your sdcard. What would you like to do ?</string>
+    <string name="noSupportedHandlerForFileType">No supported applications for this file type.</string>
+    <string name="searchApps">Search apps</string>
+    <string name="niranjan94" translatable="false">niranjan94</string>
+    <string name="niranjan94Username" translatable="false">\@niranjan94</string>
+    <string name="apkParseFailed">Failed to parse the selected apk file</string>
+    <string name="jarUnsupported">Decompiling JAR files is unsupported. Will be available soon.</string>
+    <string name="unsupported_file">File is unsupported.</string>
+    <string name="extractingJar">Building JAR from Input</string>
+    <string name="decompilingToJava">Decompiling to java</string>
+    <string name="extractingResources">Extracting resources</string>
+    <string name="optimizing">Optimizing</string>
+    <string name="optimizingClasses">Optimizing classes</string>
+    <string name="mergingClasses">Merging classes</string>
+    <string name="wrapLines">Wrap lines</string>
+    <string name="lineNumbers">Line numbers</string>
+    <string name="zoomable">Zoomable</string>
+    <string name="errorUserCancelled">The process was cancelled.</string>
+    <string name="errorAlreadyOwned">You already own this item. Please close and re-open the application to load your purchases.</string>
+    <string name="errorItemUnavailable">This item is currently unavailable. Try again later.</string>
+    <string name="errorAccount">There was an error with your account.</string>
+    <string name="errorPayment">An error occurred while processing your payment. Please try again.</string>
+    <string name="errorRequest">An error occurred while processing your request.</string>
+    <string name="proNoAds">No advertisements</string>
+    <string name="proEarlyAccess">Early access to new features</string>
+    <string name="buyNow">Buy Now</string>
+
+    <string-array name="decompilers" translatable="false">
+        <item><xliff:g>CFR 0.140</xliff:g></item>
+        <item><xliff:g>JaDX 0.9.0</xliff:g></item>
+        <item><xliff:g>FernFlower a0a8f0a</xliff:g></item>
+    </string-array>
+
+    <string-array name="decompilersValues" translatable="false">
+        <item><xliff:g>cfr</xliff:g></item>
+        <item><xliff:g>jadx</xliff:g></item>
+        <item><xliff:g>fernflower</xliff:g></item>
+    </string-array>
+
+    <string-array name="decompilerDescriptions">
+        <item><xliff:g>A fast decompiler that can decompile modern Java features up to and including much of Java 9, 10 and beyond</xliff:g></item>
+        <item><xliff:g>A decompiler optimised for working with Android dex/apk files</xliff:g></item>
+        <item><xliff:g>The first working analytical decompiler for Java</xliff:g></item>
+    </string-array>
+
+    <string name="viewOpenSourceLicenses">View Open source licenses</string>
+    <string name="openSourceLicense">Open source licenses</string>
+    <string name="tapViewOpenSourceLicenses">Tap to view open source licenses</string>
+    <string name="startingDexToJar">Starting DEX to JAR Conversion</string>
+    <string name="saveSource">Save source to external memory</string>
+    <string name="shareSource">Share source</string>
+    <string name="deleteSource">Delete source</string>
+    <string name="decompilerUnavailable">Decompiler Unavailable</string>
+    <string name="decompilerUnavailableExplanation">JaDX and Fernflower use newer Java features such as some types of lambda\'s which are not available on pre-N versions of Android.\n\nPlease use CFR instead.</string>
+    <string name="deleteSourceHistory">Delete source history</string>
+    <string name="deleteSourceConfirm">Are you sure you want to delete the decompiled source ?</string>
+    <string name="deleteSourceHistoryConfirm">Are you sure you want to delete source history ?</string>
+    <string name="compressingSource">Compressing source</string>
+    <string name="sourceDeleted">The source has been deleted from your device.</string>
+    <string name="sourceHistoryDeleted">The sources have been deleted from your device.</string>
+    <string name="sendSourceVia">Send source via</string>
+    <string name="viewDecompiledSource">View previously decompiled source</string>
+    <string name="selectFile">Select a File</string>
+    <string name="writingDexFile">Writing dex file</string>
+    <string name="writingJarFile">Writing jar file</string>
+    <string name="chunk">Chunk <xliff:g example="2" id="currentChunk">%1$d</xliff:g> of <xliff:g example="4" id="totalChunks">%2$d</xliff:g></string>
+    <string name="experimental">Experimental</string>
+    <string name="classesPerChunk">Class definitions per dex chunk</string>
+    <string name="maxDecompilerAttempts">Max attempts for decompilation</string>
+    <string name="cannotDecompileFile">Cannot decompile the file selected</string>
+    <string name="clearSourceHistory">Clear source history</string>
+    <string name="clearSourceHistorySummary">Delete previously decompiled sources</string>
+    <string name="tapToViewSource">Tap to view source</string>
+    <string name="appHasBeenDecompiled"><xliff:g example="WhatsApp" id="appName">%1$s</xliff:g> has been decompiled</string>
+    <string name="errorDecompilingApp"><xliff:g example="WhatsApp" id="appName">%1$s</xliff:g> could not be decompiled</string>
+    <string name="tapToRetry">Tap to retry</string>
+    <string name="showSystemApps">Show System Apps</string>
+    <string name="showSystemAppsSummary">Allow decompiling system apps. (Buggy)</string>
+    <string name="all">All</string>
+    <string name="system">System</string>
+    <string name="user">User</string>
+    <string name="systemAppWarning">Warning: This is a system application. Successful decompilation may not be possible.</string>
+    <string name="memoryUsage">Memory usage</string>
+    <string name="zeroPercentage">(waiting)</string>
+    <string name="advanced">Advanced</string>
+    <string name="showMemoryUsage">Show memory usage</string>
+    <string name="showMemoryUsageSummary">Display live app memory usage on the decompiler screen</string>
+    <string name="lowMemory">Low memory</string>
+    <string name="lowMemoryInfo">The selected decompiler ran out of RAM while attempting to decompile</string>
+    <string name="lowMemoryExtraInfo">Try reducing the classes per chunk or increasing memory threshold and/or pick another decompiler.</string>
+    <string name="lowMemoryStatusInfo">Ran out of RAM. Tap for more info.</string>
+    <string name="memoryThreshold">Memory usage threshold (in %)</string>
+    <string name="darkMode">Dark mode (Beta)</string>
+    <string name="darkModeSummary">Turn on/off dark mode for the app</string>
+    <string name="themeChangeCloseInfo">Close and re-open app for the theme to take complete effect</string>
+    <string name="fileBugReport">File a bug report</string>
+    <string name="appReportThanks">Thanks for reporting :). The high memory usage will be investigated.</string>
+    <string name="purchaseVerificationFailed">Purchase verification failed. Please try again. If issue persists, drop in an email at me\@niranjan.io</string>
+    <string name="purchaseSuccess">Thank you for purchasing Show Java Pro ! :) You are awesome !</string>
+    <string name="purchaseInitError">An error occurred while initializing purchase. Please try again later.</string>
+    <string name="deviceVerificationFailed">
+        Device failed the verification for making in-app purchases on Show Java.
+        (<xliff:g example="PIRATE_APP_CHECK" id="errorName">%1$s</xliff:g>)
+    </string>
+    <string name="deviceVerificationFailedPirateApp">
+        You cannot make in-app purchases on Show Java due to the presence of the app <xliff:g example="Lucky Patcher" id="appName">%1$s</xliff:g>
+        which is flagged as one that is used for piracy.
+    </string>
+    <string name="adPreferences">Ads Preferences</string>
+    <string name="adPreferencesSummary">Change your personalization preferences for Ads</string>
+    <string name="initializing">Initializing</string>
+    <string name="useCustomFont">Use custom font</string>
+    <string name="useCustomFontSummary">Choose between lato or system default font</string>
+    <string name="userInterface">User interface</string>
+    <string name="instanceId">(ID: <xliff:g example="abc134_GTF" id="instanceIdString">%1$s</xliff:g>)</string>
+    <string name="onlyPositiveIntegersAllowed">Only positive integers are allowed</string>
+    <string name="errorLoadingInputFile">Error loading input file</string>
+    <string name="genericError">An unexpected error occurred</string>
+    <string name="errorLoadingFiles">An error occurred while loading files</string>
+    <string name="decompilersUnavailable">JaDX and Fernflower decompilers are available only on android devices running Android 7.0 and above.</string>
+    <string name="keepIntermediateFiles">Keep intermediate files</string>
+    <string name="keepIntermediateFilesSummary">Do not delete dex &amp; jar files created during the decompilation</string>
+
+    <string name="appsListItemTransitionName">appsListItemTransition</string>
+    <string name="decompilerListItemTransitionName">decompilerListItemTransition</string>
+    <string name="title_jadx_24">JADX Decompiler</string>
+    <string name="title_fernflower_24">Fernflower</string>
+    <string name="title_cfr_16">CFR</string>
+
+</resources>

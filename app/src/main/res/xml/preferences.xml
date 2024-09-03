@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Show Java - A java/apk decompiler for android
+  ~ Copyright (c) 2019 Niranjan Rajendran
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/decompilerSettings"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="ignoreLibraries"
+            android:defaultValue="true"
+            android:summary="@string/ignoreLibrariesPreferenceSummary"
+            android:title="@string/speedUpDecompile" />
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="keepIntermediateFiles"
+            android:defaultValue="false"
+            android:summary="@string/keepIntermediateFilesSummary"
+            android:title="@string/keepIntermediateFiles" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        android:title="@string/userInterface">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="customFont"
+            android:defaultValue="true"
+            android:summary="@string/useCustomFontSummary"
+            android:title="@string/useCustomFont" />
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="darkMode"
+            android:defaultValue="false"
+            android:summary="@string/darkModeSummary"
+            android:title="@string/darkMode" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        android:title="@string/advanced">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="showMemoryUsage"
+            android:defaultValue="true"
+            android:summary="@string/showMemoryUsageSummary"
+            android:title="@string/showMemoryUsage" />
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:key="showSystemApps"
+            android:defaultValue="false"
+            android:summary="@string/showSystemAppsSummary"
+            android:title="@string/showSystemApps" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:defaultValue="500"
+            android:key="chunkSize"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/classesPerChunk" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="maxAttempts"
+            android:defaultValue="2"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/maxDecompilerAttempts" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="memoryThreshold"
+            android:defaultValue="80"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/memoryThreshold" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="clearSourceHistory"
+            android:summary="@string/clearSourceHistorySummary"
+            android:title="@string/clearSourceHistory"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/helpSupport"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="adPreferences"
+            android:shouldDisableView="true"
+            android:summary="@string/adPreferencesSummary"
+            android:title="@string/adPreferences">
+        </Preference>
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/reportBugPreferenceSummary"
+            android:title="@string/reportBug">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/niranjan94/show-java/issues"/>
+        </Preference>
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/tapToRateApp"
+            android:title="@string/rateAndReview">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="market://details?id=com.njlabs.showjava"/>
+        </Preference>
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/tapViewOpenSourceLicenses"
+            android:title="@string/openSourceLicense">
+            <intent
+                android:targetPackage="com.njlabs.showjava"
+                android:targetClass="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"/>
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

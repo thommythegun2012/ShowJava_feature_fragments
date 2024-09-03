@@ -1,0 +1,14 @@
+deviceId=YourDeviceId
+admobPublisherId=pub-3940256099942544
+adUnitId=YourAdUnitId
+admobAppId=ca-app-pub-2735678706868784~9844008184
+IapProductId=pro_app
+googlePlayLicenseKey=xyzzy
+backendUrl=https://postb.in/iiolsQAd
+purchaseVerifierPath=check/buy
+privacyPolicyUrl=https://example.com/privacy-policy/
+minifyEnabled=false
+shrinkResources=false
+crashlyticsApiKey=AIzaSyDgsVAbeeTWYMbA8oPyjb3izum6LIomSUQ
+encryptionKey=abc
+encryptionSalt=abc
